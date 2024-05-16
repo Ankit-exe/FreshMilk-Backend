@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import MyUserRoutes from "./routes/MyUserRoutes";
 import { v2 as cloudinary } from "cloudinary";
 import MyShopRoutes from "./routes/MyShopRoutes"
+import ShopRoute from "./routes/ShopRoute"
 
 mongoose.connect(process.env.MONGODB_CONNECTION as string).then(() => console.log("DB Connected"));
 
@@ -22,7 +23,8 @@ app.get("/health", async (req: Request, res: Response) => {
     res.send({ message: "health ok!" })
 })
 app.use("/api/my/user", MyUserRoutes);
-app.use("/api/my/shop", MyShopRoutes)
+app.use("/api/my/shop", MyShopRoutes);
+app.use("/api/shop", ShopRoute)
 
 
 app.listen(7000, () => {
